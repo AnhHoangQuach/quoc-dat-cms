@@ -15,7 +15,7 @@ const PopupUpdateUser = ({ id, onClose }: PopupProps) => {
     mutationFn: authService.updateUser,
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: ['userService.fetchUsers'],
+        queryKey: ['authService.fetchUsers'],
       });
       onClose();
     },
