@@ -18,13 +18,14 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { profileSelector } from 'reducers/profileSlice';
 import { authService } from 'services';
-import { PopupCreateUser, PopupUpdateUser } from 'views/User/popups';
+import { PopupCreateUser, PopupDeleteUser, PopupUpdateUser } from 'views/User/popups';
 
 const Home = () => {
   const { role } = useSelector(profileSelector);
   const [dataSearch, onSearchChange] = useSearch();
   const [openCreatePopup, setOpenCreatePopup] = useState(false);
   const [openUpdatePopup, setOpenUpdatePopup] = useState(false);
+  const [openDeletePopup, setOpenDeletePopup] = useState(false);
   const [selectId, setSelectId] = useState<string>();
 
   const { data, isLoading } = useQuery({
@@ -76,6 +77,17 @@ const Home = () => {
                       >
                         Cập nhật
                       </Button>
+                      <Button
+                        variant='outlined'
+                        color='secondary'
+                        size='small'
+                        onClick={() => {
+                          setSelectId(item.id);
+                          setOpenDeletePopup(true);
+                        }}
+                      >
+                        Xoá
+                      </Button>
                     </div>
                   </TableCell>
                 </TableRow>
@@ -97,6 +109,11 @@ const Home = () => {
 
       <Dialog open={openUpdatePopup}>
         <PopupUpdateUser id={selectId!} onClose={() => setOpenUpdatePopup(false)} />
+      </Dialog>
+
+
+      <Dialog open={openDeletePopup}>
+        <PopupDeleteUser id={selectId!} onClose={() => setOpenDeletePopup(false)} />
       </Dialog>
     </div>
   );
