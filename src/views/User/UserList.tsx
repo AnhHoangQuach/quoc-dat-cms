@@ -111,7 +111,6 @@ const Home = () => {
         <PopupUpdateUser id={selectId!} onClose={() => setOpenUpdatePopup(false)} />
       </Dialog>
 
-
       <Dialog open={openDeletePopup}>
         <PopupDeleteUser id={selectId!} onClose={() => setOpenDeletePopup(false)} />
       </Dialog>

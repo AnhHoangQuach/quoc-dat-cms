@@ -4,7 +4,7 @@ const login = (body: LoginBody): Promise<LoginResponse> => client.post(`/auth/lo
 const fetchUsers = (params?: UserParams): Promise<UserPaginateType> => client.get(`/users`, { params });
 const updateUser = ({ id, ...body }: UpdateUserBody): Promise<UserRecordType> => client.put(`/users/${id}`, body);
 const createUser = (body: UserPayloadType): Promise<UserRecordType> => client.post(`/users`, body);
-const deleteUser = (id: string): Promise<string> => client.delete(`/users/${id}`);
+const deleteUser = (id: string): Promise<boolean> => client.delete(`/users/${id}`);
 
 const queryDashboard = (): Promise<TripCountType[]> => client.get(`/trips/dashboard`);
 const fetchTrips = (params?: TripParams): Promise<TripPaginateType> => client.get(`/trips`, { params });
@@ -22,7 +22,7 @@ const authService = {
   createUser,
   queryDashboard,
   getTripsInMonth,
-  deleteUser
+  deleteUser,
 };
 
 export default authService;

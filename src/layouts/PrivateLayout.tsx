@@ -18,7 +18,7 @@ const PrivateLayout = () => {
 
   return (
     <main>
-      {<AppHeader />}
+      {location.pathname !== privateRoute.dashboard.path && <AppHeader />}
       <Routes>
         {Object.values(privateRoute).map(({ path, component }) => (
           <Route key={path} path={path} element={component} />

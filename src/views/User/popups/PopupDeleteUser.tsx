@@ -1,5 +1,5 @@
 import { LoadingButton } from '@mui/lab';
-import { DialogActions, DialogTitle} from '@mui/material';
+import { DialogActions, DialogTitle } from '@mui/material';
 import { useMutation } from '@tanstack/react-query';
 import { authService, queryClient } from 'services';
 
@@ -16,13 +16,10 @@ const PopupDeleteUser = ({ id, onClose }: PopupProps) => {
       });
       onClose();
     },
-    onError: (error) => {
-      console.error('Xóa user thất bại:', error); // Log lỗi nếu có
-    },
   });
 
   const handleClickSubmit = () => {
-    deleteUser(id); // Gửi ID user cần xóa
+    deleteUser(id);
   };
 
   return (
