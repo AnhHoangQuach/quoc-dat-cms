@@ -60,7 +60,7 @@ const Home = () => {
     }
   };
 
-  const { control, setValue, watch, reset } = useForm<ExportBody>({
+  const { control, setValue, watch } = useForm<ExportBody>({
     defaultValues: {
       from: undefined,
       to: undefined,
@@ -99,6 +99,7 @@ const Home = () => {
                 label='Từ ngày'
                 {...field}
                 closeOnSelect
+                value={field.value ? DateTime.fromISO(field.value) : null}
                 slotProps={{
                   field: { clearable: true, onClear: () => setValue('from', undefined) },
                   textField: { fullWidth: true },
@@ -116,7 +117,8 @@ const Home = () => {
                 format='dd/MM/yyyy'
                 label='Đến ngày'
                 {...field}
-                minDate={watch('from') || null}
+                minDate={watch('from') ? DateTime.fromISO(watch('from') as string) : undefined}
+                value={field.value ? DateTime.fromISO(field.value) : null}
                 closeOnSelect
                 slotProps={{
                   field: { clearable: true, onClear: () => setValue('to', undefined) },
