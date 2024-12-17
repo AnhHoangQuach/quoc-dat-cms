@@ -10,6 +10,7 @@ type UserRecordType = {
   role?: string;
   email?: string;
   isEmailVerified?: boolean;
+  avatar?: string;
 };
 
 type UpdateUserBody = {

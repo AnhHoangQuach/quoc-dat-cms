@@ -1,5 +1,6 @@
 import { Logout, Menu } from '@mui/icons-material';
-import { AppBar, Avatar, Button, Drawer, IconButton, Toolbar, Tooltip } from '@mui/material';
+import { AppBar, Button, Drawer, IconButton, Toolbar, Tooltip } from '@mui/material';
+import { AvatarChanger } from 'components/AvatarChanger';
 import { AppBreadcrumb, AppMenu } from 'containers';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -11,9 +12,12 @@ const Header = () => {
   const dispatch = useDispatch();
   const location = useLocation();
 
-  const { isLoggedIn, name } = useSelector(profileSelector);
-
+  const { isLoggedIn, name, avatar } = useSelector(profileSelector);
   const [openDrawer, setOpenDrawer] = useState(false);
+
+  useEffect(() => {
+    console.log('Avatar mới đã cập nhật:', avatar);
+  }, [avatar]);
 
   useEffect(() => {
     setOpenDrawer(false);
@@ -46,7 +50,9 @@ const Header = () => {
           {isLoggedIn ? (
             <div className='flex flex-1 items-center justify-end'>
               <Button variant='outlined' color='warning'>
-                <Avatar className='mr-2 h-6 w-6 text-sm' />
+                {/* <Avatar className='mr-2 h-6 w-6 text-sm' />
+                {name} */}
+                <AvatarChanger avatarUrl={avatar} />
                 {name}
               </Button>
               <Tooltip title='Đăng xuất'>

@@ -5,6 +5,7 @@ export const profileSlice = createSlice({
   name: 'profile',
   initialState: {
     isLoggedIn: false,
+    avatar: '',
   } as ProfileRecordType,
   reducers: {
     signIn: (state, { payload }) => {

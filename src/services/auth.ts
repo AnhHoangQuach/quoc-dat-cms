@@ -5,6 +5,15 @@ const fetchUsers = (params?: UserParams): Promise<UserPaginateType> => client.ge
 const updateUser = ({ id, ...body }: UpdateUserBody): Promise<UserRecordType> => client.put(`/users/${id}`, body);
 const createUser = (body: UserPayloadType): Promise<UserRecordType> => client.post(`/users`, body);
 const deleteUser = (id: string): Promise<string> => client.delete(`/users/${id}`);
+const avatarChanger = (userId: string, file: File): any => {
+  const formData = new FormData();
+  formData.append('avatar', file);
+
+  // Gửi request PUT tới API `/users/:userId/avatar`
+  return client.put(`/users/${userId}/avatar`, formData, {
+    headers: { 'Content-Type': 'multipart/form-data' },
+  });
+};
 
 const queryDashboard = (): Promise<TripCountType[]> => client.get(`/trips/dashboard`);
 const fetchTrips = (params?: TripParams): Promise<TripPaginateType> => client.get(`/trips`, { params });
@@ -22,7 +31,8 @@ const authService = {
   createUser,
   queryDashboard,
   getTripsInMonth,
-  deleteUser
+  deleteUser,
+  avatarChanger,
 };
 
 export default authService;
